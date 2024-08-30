@@ -2,10 +2,18 @@ package ru.job4j.tracker;
 
 import java.time.LocalDateTime;
 
-public class Item {
+/*
+Класс Item описывает модель заявления.
+Поле id - это уникальный номер заявления.
+Поле name содержит название заявления.
+Поле created содержит дату создания заявления.
+*/
 
+public class Item {
     private int id;
+
     private String name;
+
     private LocalDateTime created = LocalDateTime.now();
 
     public Item() {
@@ -39,5 +47,4 @@ public class Item {
     public LocalDateTime getCreated() {
         return created;
     }
-
 }
