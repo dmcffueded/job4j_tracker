@@ -14,14 +14,13 @@ public class Matches {
                 int matches = Integer.parseInt(input.nextLine());
                 if (matches < 1 || matches > 3) {
                     System.out.println("Некорректный ввод! Нужно ввести число от 1 до 3.");
-                    continue;
                 } else if (matches > count) {
                     System.out.println("Вы не можете взять больше оставшихся спичек. Осталось " + count + " спичек.");
-                    continue;
-                }
+                } else {
             count -= matches;
             System.out.println("Осталось " + count + " спичек.");
             turn = !turn;
+                }
         }
         if (!turn) {
             System.out.println("Выиграл первый игрок");
