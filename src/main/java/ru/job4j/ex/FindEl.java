@@ -21,7 +21,7 @@ public class FindEl {
             throw new RuntimeException(e);
         }
         try {
-            indexOf(value, key1);
+            indexOf(value, key2);
         } catch (ElementNotFoundException e) {
             throw new RuntimeException(e);
         }
