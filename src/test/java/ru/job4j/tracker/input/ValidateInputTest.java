@@ -47,4 +47,19 @@ class ValidateInputTest {
         int thirdSelected = input.askInt("Enter menu:");
         assertThat(thirdSelected).isEqualTo(3);
     }
+
+    @Test
+    void whenValidNegativeInput() {
+        Output output = new StubOutput();
+        Input in = new MockInput(
+                new String[] {"-1", "2"}
+        );
+        ValidateInput input = new ValidateInput(output, in);
+
+        int secondSelected = input.askInt("Enter menu:");
+        assertThat(secondSelected).isEqualTo(-1);
+
+        int thirdSelected = input.askInt("Enter menu:");
+        assertThat(thirdSelected).isEqualTo(2);
+    }
 }
