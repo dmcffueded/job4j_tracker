@@ -11,8 +11,8 @@ public class UniqueText {
         for (String orig : origin) {
             check.add(orig);
         }
-        for (String dupl : text) {
-            if (!check.contains(dupl)) {
+        for (String dpl : text) {
+            if (!check.contains(dpl)) {
                 result = false;
                 break;
             }
