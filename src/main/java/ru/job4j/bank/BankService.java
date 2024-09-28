@@ -13,13 +13,14 @@ public class BankService {
     }
 
     public void deleteUser(String passport) {
-        users.remove(findByPassport(passport));
+        users.remove(new User(passport, ""));
     }
 
     public void addAccount(String passport, Account account) {
-        if (users.containsKey(findByPassport(passport))
-                && !users.get(findByPassport(passport)).contains(account)) {
-            users.get(findByPassport(passport)).add(account);
+        User user = findByPassport(passport);
+        List<Account> accounts = users.get(user);
+        if (users.containsKey(user) && !accounts.contains(account)) {
+            accounts.add(account);
         }
     }
 
@@ -47,14 +48,18 @@ public class BankService {
                                  String destinationPassport, String destinationRequisite,
                                  double amount) {
         boolean result = false;
-        if (users.containsKey(findByPassport(sourcePassport))
-                && users.get(findByPassport(sourcePassport)).contains(findByRequisite(sourcePassport, sourceRequisite))
-                && users.containsKey(findByPassport(destinationPassport))
-                && users.get(findByPassport(destinationPassport)).contains(findByRequisite(destinationPassport, destinationRequisite))
-                && findByRequisite(sourcePassport, sourceRequisite).getBalance() >= amount) {
-            findByRequisite(destinationPassport, destinationRequisite).setBalance(findByRequisite(destinationPassport, destinationRequisite).getBalance()
+        User userSource = findByPassport(sourcePassport);
+        Account accountsSource = findByRequisite(sourcePassport, sourceRequisite);
+        User userDestinstion = findByPassport(destinationPassport);
+        Account accountsDestinstion = findByRequisite(destinationPassport, destinationRequisite);
+        if (users.containsKey(userSource)
+                && users.get(userSource).contains(accountsSource)
+                && users.containsKey(userDestinstion)
+                && users.get(userDestinstion).contains(accountsDestinstion)
+                && accountsSource.getBalance() >= amount) {
+            accountsDestinstion.setBalance(accountsDestinstion.getBalance()
                     + amount);
-            findByRequisite(sourcePassport, sourceRequisite).setBalance(findByRequisite(sourcePassport, sourceRequisite).getBalance()
+            accountsSource.setBalance(accountsSource.getBalance()
                     - amount);
             result = true;
         }
