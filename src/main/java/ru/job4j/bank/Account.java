@@ -2,6 +2,10 @@ package ru.job4j.bank;
 
 import java.util.Objects;
 
+/**
+ * Модель банковского счета. Содержит поля реквизиты и баланс, стандартные геттеры и сеттеры
+ */
+
 public class Account {
     private String requisite;
     private double balance;
